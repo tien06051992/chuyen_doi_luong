@@ -48,17 +48,21 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+enum Vung { one, two, three, four }
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  Vung _vung = Vung.one;
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void _changeVung(value) {
+    setState(() {
+      _vung = value;
     });
   }
 
@@ -74,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
       title: widget.title,
       counter: _counter,
       incrementCounter: _incrementCounter,
+      vung: _vung,
+      changeVung: _changeVung,
     );
   }
 }

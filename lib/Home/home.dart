@@ -1,18 +1,20 @@
+import 'package:chuyen_doi_luong/main.dart';
 import 'package:flutter/material.dart';
-
-enum Vung { one, two, three, four }
 
 class HomePage extends StatelessWidget {
   final String title;
   final int counter;
   final Function incrementCounter;
-  Vung? _character = Vung.one;
+  final Vung vung;
+  final Function changeVung;
 
   const HomePage({
     super.key,
     required this.title,
     required this.counter,
     required this.incrementCounter,
+    required this.vung,
+    required this.changeVung,
   });
 
   @override
@@ -68,22 +70,101 @@ class HomePage extends StatelessWidget {
                     ),
                   )),
               Container(
+                // Vung
                 padding: const EdgeInsets.all(8),
-                child: Row(children: <Widget>[
-                  ListTile(
-                    title: const Text('Lafayette'),
-                    leading: Radio<SingingCharacter>(
-                      value: SingingCharacter.lafayette,
-                      groupValue: _character,
-                      onChanged: (SingingCharacter? value) {
-                        setState(() {
-                          _character = value;
-                        });
-                      },
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      const Expanded(
+                        flex: 1,
+                        child: Text('Vùng'),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Row(
+                          children: [
+                            Radio(
+                                value: Vung.one,
+                                groupValue: vung,
+                                onChanged: (value) {
+                                  changeVung.call(value);
+                                }),
+                            const Expanded(
+                              child: Text('I'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Row(
+                          children: [
+                            Radio(
+                                value: Vung.two,
+                                groupValue: vung,
+                                onChanged: (value) {
+                                  changeVung.call(value);
+                                }),
+                            const Expanded(child: Text('II'))
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Row(
+                          children: [
+                            Radio(
+                                value: Vung.three,
+                                groupValue: vung,
+                                onChanged: (value) {
+                                  changeVung.call(value);
+                                }),
+                            const Expanded(child: Text('III'))
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Row(
+                          children: [
+                            Radio(
+                                value: Vung.four,
+                                groupValue: vung,
+                                onChanged: (value) {
+                                  changeVung.call(value);
+                                }),
+                            const Expanded(child: Text('IV'))
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+              Row(
+                // Button doi luong
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
                     ),
+                    onPressed: () {},
+                    child: Text('Gross sang Net'),
                   ),
-                ]),
-              )
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () {},
+                    child: Text('Net sang Gross'),
+                  )
+                ],
+              ),
             ],
           ),
         ),
